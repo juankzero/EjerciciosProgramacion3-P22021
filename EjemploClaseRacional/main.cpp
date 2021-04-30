@@ -6,19 +6,14 @@
 
 int main() 
 {
-	Racional r1;
-	Racional r2(1, 2);
-	Racional r3(8, 5);
+	Racional r1(1, 2);
+	Racional r2(3, 4);
+	Racional r3(5, 2);
 
-	r1.imprimirRacional();
-	r1.imprimirDecimal();
+	Racional r4 = r1.resta(r2).suma(r3);
 
-	r2.imprimirRacional();
-	r2.imprimirDecimal();
-
-	r3.imprimirRacional();
-	r3.imprimirDecimal();
-
+	r4.imprimirRacional();
+	r4.imprimirDecimal();
 
 
 	_getch();

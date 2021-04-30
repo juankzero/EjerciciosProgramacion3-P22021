@@ -46,8 +46,43 @@ void Racional::imprimirDecimal()
 		return;
 	}
 
-	cout << "Forma Decimal: { " << float(this->numerador) / float(this->denominador) << "}\n";
+	cout << "Forma Decimal: { " << float(this->numerador) / float(this->denominador) << " }\n";
 }
 
 void Racional::simplificar() 
-{}
+{
+	int mayor = this->numerador > this->denominador ? this->numerador : this->denominador;
+
+	for (int i = 2; i <= mayor; i++) 
+	{
+		if (this->numerador % i == 0 && this->denominador % i == 0)
+		{
+			this->numerador = this->numerador / i;
+			this->denominador = this->denominador / i;
+
+			i = 1;
+		}
+	}
+
+}
+
+Racional Racional::suma(Racional r2) 
+{
+	//cuando ambos denominadores sean iguales
+	if (this->denominador == r2.denominador)
+		return Racional(this->numerador + r2.numerador, this->denominador);
+	else
+		return Racional((this->numerador * r2.denominador) + (r2.numerador * this->denominador),
+			this->denominador * r2.denominador);
+}
+
+Racional Racional::resta(Racional r2) 
+{
+	//cuando ambos denominadores sean iguales
+	if (this->denominador == r2.denominador)
+		return Racional(this->numerador - r2.numerador, this->denominador);
+	else
+		return Racional((this->numerador * r2.denominador) - (r2.numerador * this->denominador),
+			this->denominador * r2.denominador);
+
+}
