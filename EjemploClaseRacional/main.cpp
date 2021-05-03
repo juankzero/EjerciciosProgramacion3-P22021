@@ -7,14 +7,14 @@
 int main() 
 {
 	Racional r1(1, 2);
-	Racional r2(3, 4);
-	Racional r3(5, 2);
+	Racional r2(2, 3);
 
-	Racional r4 = r1.resta(r2).suma(r3);
+	Racional r3 = r1.multiplicacion(r2).potencia(3);
 
-	r4.imprimirRacional();
-	r4.imprimirDecimal();
+	r3.imprimirRacional();
+	r3.imprimirDecimal();
 
+	
 
 	_getch();
 }

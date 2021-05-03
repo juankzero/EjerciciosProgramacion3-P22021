@@ -2,6 +2,8 @@
 #include "Racional.h"
 #include <iostream>
 
+#include <cmath>
+
 using std::cout;
 
 Racional::Racional() : numerador(1), denominador(1)
@@ -85,4 +87,19 @@ Racional Racional::resta(Racional r2)
 		return Racional((this->numerador * r2.denominador) - (r2.numerador * this->denominador),
 			this->denominador * r2.denominador);
 
+}
+
+Racional Racional::multiplicacion(Racional r2)
+{
+	return Racional(this->numerador * r2.numerador, this->denominador * r2.denominador);
+}
+
+Racional Racional::division(Racional r2)
+{
+	return Racional(this->numerador * r2.denominador, r2.numerador * this->denominador);
+}
+
+Racional Racional::potencia(int exponente) 
+{	
+	return Racional( pow(this->numerador, exponente), pow(this->denominador, exponente) );
 }
