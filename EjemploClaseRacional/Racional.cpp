@@ -103,3 +103,29 @@ Racional Racional::potencia(int exponente)
 {	
 	return Racional( pow(this->numerador, exponente), pow(this->denominador, exponente) );
 }
+
+std::ostream& operator<<(std::ostream& cout, const Racional& r)
+{
+	cout << "{ " << r.numerador << "/" << r.denominador << ", " << float(r.numerador) / float(r.denominador) << " }\n";
+	return cout;
+}
+
+Racional& operator+(const Racional& r1, const Racional& r2)
+{
+	Racional resultado;
+
+	if (r1.denominador == r2.denominador)
+	{
+		resultado.numerador = r1.numerador + r2.numerador;
+		resultado.denominador = r2.denominador;
+	}
+	else
+	{
+		resultado.numerador = (r1.numerador * r2.denominador) 
+								+ (r2.numerador * r1.denominador);
+		resultado.denominador = r1.denominador * r2.denominador;
+	}
+
+	return resultado;
+
+}

@@ -3,8 +3,19 @@
 #ifndef RACIONAL_H
 #define RACIONAL_H
 
+#include <iostream>
+
 class Racional 
 {
+	//definicion de funciones no miembro de clase
+	friend std::ostream& operator<<(std::ostream&, const Racional&);
+	friend Racional& operator+(const Racional&, const Racional&);
+
+	friend Racional& operator-(const Racional&, const Racional&);
+	friend Racional& operator*(const Racional&, const Racional&);
+	friend Racional& operator/(const Racional&, const Racional&);
+	friend Racional& operator^(const Racional&, const int&);
+
 public:
 	Racional();
 	Racional(int, int);
