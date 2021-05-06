@@ -9,6 +9,7 @@ class Byte
 {
 	friend std::ostream& operator<<(std::ostream&, const Byte&);
 	friend Byte& operator+(const Byte&, const Byte&);
+	friend Byte& operator-(const Byte&, const Byte&);
 
 public:
 	Byte();
@@ -18,6 +19,8 @@ public:
 
 	//destructor de clase
 	~Byte();
+
+	int obtenerDecimal();
 
 private:
 	int bits[8];
