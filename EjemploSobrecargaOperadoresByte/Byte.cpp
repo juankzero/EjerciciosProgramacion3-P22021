@@ -42,6 +42,16 @@ int Byte::obtenerDecimal()
 
 }
 
+void Byte::operator~(void)
+{
+
+	for (int i = 0; i < 8; i++) 
+	{
+		this->bits[i] = this->bits[i] == 0 ? 1 : 0;
+	}
+
+}
+
 std::ostream& operator<<(std::ostream& cout, const Byte& b1)
 {
 	cout << "{ ";
@@ -52,6 +62,21 @@ std::ostream& operator<<(std::ostream& cout, const Byte& b1)
 	cout << " }\n";
 
 	return cout;
+}
+
+std::istream& operator>>(std::istream& cin, Byte& b1)
+{
+	char valorBinario[9];
+
+	cin >> valorBinario;
+
+	for (int i = 0; i < 8; i++) 
+	{
+		b1.bits[i] = valorBinario[i] - 48;
+	}
+
+	return cin;
+
 }
 
 Byte& operator+(const Byte& b1, const Byte& b2)
