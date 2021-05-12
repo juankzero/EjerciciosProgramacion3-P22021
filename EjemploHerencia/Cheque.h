@@ -17,6 +17,8 @@ public:
 private:
 	double cuotaTransaccion;
 
+	void cargarCuotaTransaccion();
+
 };
 
 #endif // !CHEQUES_H
