@@ -16,7 +16,7 @@ public:
 	float getPerimetro();
 	void imprimirFigura();
 
-private:
+protected:
 	int base, altura;
 
 };

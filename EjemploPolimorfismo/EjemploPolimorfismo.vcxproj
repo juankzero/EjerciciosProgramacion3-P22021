@@ -139,12 +139,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Circulo.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Rectangulo.cpp" />
+    <ClCompile Include="TrianguloRectangulo.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Circulo.h" />
     <ClInclude Include="Figura2D.h" />
     <ClInclude Include="Rectangulo.h" />
+    <ClInclude Include="TrianguloRectangulo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

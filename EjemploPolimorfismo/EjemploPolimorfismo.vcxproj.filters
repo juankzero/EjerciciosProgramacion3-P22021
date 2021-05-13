@@ -21,12 +21,24 @@
     <ClCompile Include="Rectangulo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Circulo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TrianguloRectangulo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Figura2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Rectangulo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Circulo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TrianguloRectangulo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
