@@ -33,3 +33,8 @@ void Rectangulo::imprimirFigura()
 		<< this->altura << ", area: " << getArea() << ", perimetro: "
 		<< getPerimetro() << " }\n";
 }
+
+TipoFigura Rectangulo::obtenerInstancia()
+{
+	return TipoFigura::tRectangulo;
+}

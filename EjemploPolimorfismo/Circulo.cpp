@@ -34,3 +34,8 @@ void Circulo::imprimirFigura()
 	cout << "Circulo { radio: " << this->radio << ", area: "
 		<< getArea() << ", perimetro: " << getPerimetro() << " }\n";
 }
+
+TipoFigura Circulo::obtenerInstancia()
+{
+	return TipoFigura::tCirculo;
+}

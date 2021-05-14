@@ -16,6 +16,8 @@ public:
 	float getPerimetro();
 	void imprimirFigura();
 
+	TipoFigura obtenerInstancia();
+
 protected:
 	int base, altura;
 

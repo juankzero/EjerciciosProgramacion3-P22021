@@ -38,3 +38,8 @@ void TrianguloRectangulo::imprimirFigura()
 		<< ", area: " << getArea() << ", perimetro: " << getPerimetro() << " }\n";
 
 }
+
+TipoFigura TrianguloRectangulo::obtenerInstancia()
+{
+	return TipoFigura::tTrianguloRectangulo;
+}
