@@ -92,5 +92,12 @@ int main()
 
 	rCast.imprimirFigura();
 
+
+	char nombre[10];
+	cout << "Ingrese su nombre: ";
+	std::cin >> nombre;
+
+
+
 	_getch();
 }

@@ -13,7 +13,7 @@ int main()
 	/*
 	Byte b1("01101100"); //
 	Byte b2("00101100"); //
-
+	
 	cout << "b1: " << b1;
 	cout << "b2: " << b2;
 
@@ -41,10 +41,10 @@ int main()
 	~b6;
 
 	//corrimiento de bits a la izquierda
-	b6 << 2;
+	//b6 << 2;
 
 	//corrimiento de bits a la derecha
-	b6 >> 2;
+	//b6 >> 2;
 
 
 	cout << "Negacion de Byte: " << b6;
