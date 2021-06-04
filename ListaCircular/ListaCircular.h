@@ -13,9 +13,11 @@ public:
 	bool estaVacia();
 
 	void agregarElemento(const char*);
+	void agregarOrden(const char*);
 	void eliminarElemento(int);
 
 	void imprimir();
+	void imprimirReversa();
 
 private:
 	Nodo* primero;
