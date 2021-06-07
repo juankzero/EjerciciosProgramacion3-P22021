@@ -12,9 +12,9 @@ int main()
 
 
 	//Empresa::agregarEmpleados();
-	//Empresa::consultarEmpleados();
+	Empresa::consultarEmpleados();
 
-	Empresa::consultarEmpleado(4);
+	//Empresa::consultarEmpleado(4);
 
 	_getch();
 }

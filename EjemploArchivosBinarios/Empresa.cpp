@@ -84,10 +84,19 @@ void Empresa::consultarEmpleados()
 
 	Empleado lectura;
 
+	//posicionarse al inicio del archivo
+	empleadosFile.seekg(0, ios::beg);
+
+	//tellg -> devuelva la direccion de memoria en que se encuenta el cursor de 
+	//lectura del archivo
+	cout << "Posicion actual: " << empleadosFile.tellg() << "\n";
+
 	empleadosFile.read(reinterpret_cast<char*>(&lectura), sizeof(Empleado));
 
 	while (!empleadosFile.eof()) 
 	{
+		cout << "Posicion actual: " << empleadosFile.tellg() << "\n";
+
 		cout << "Empleado { codigo: " << lectura.getCodigo()
 			<< ", nombre: " << lectura.getNombre()
 			<< ", genero: " << lectura.getGenero()
@@ -96,6 +105,8 @@ void Empresa::consultarEmpleados()
 		empleadosFile.read(reinterpret_cast<char*>(&lectura), sizeof(Empleado));
 	}
 	
+	cout << "Posicion actual: " << empleadosFile.tellg() << "\n";
+
 	empleadosFile.close();
 
 }
