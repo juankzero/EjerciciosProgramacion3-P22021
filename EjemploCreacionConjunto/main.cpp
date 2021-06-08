@@ -4,6 +4,11 @@
 
 int main() 
 {
+	//crearConjunto();
+
+	//crearConjunto();
+
+	leerConjunto();
 
 	_getch();
 }
