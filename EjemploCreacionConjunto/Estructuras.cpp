@@ -207,3 +207,97 @@ void leerConjunto()
 
 	
 }
+
+void agregarRegistro()
+{
+
+	cout << "*** A G R E G A R  R E G I S T R O S ***\n\n";
+
+	cout << "Indique Tabla/Conjunto a agregar datos: ";
+	char nombreConjunto[20];
+	cin >> nombreConjunto;
+
+	fstream archivoConjunto(nombreConjunto, ios::in | ios::out | ios::binary);
+
+	if (!archivoConjunto)
+	{
+		cout << "Error: Imposible abrir/leer archivo " << nombreConjunto << "\n";
+		return;
+	}
+
+	cout << "Indique cantidad de registros a agregar: ";
+	int cantidadAgregar;
+	cin >> cantidadAgregar;
+
+	archivoConjunto.seekg(0, ios::beg);
+	InformacionTabla it;
+	archivoConjunto.read(reinterpret_cast<char*>(&it), sizeof(InformacionTabla));
+
+	vector<InformacionCampo> listaCampos;
+	InformacionCampo lecturaCampo;
+
+	for (int i = 0; i < it.cantidadCampos; i++) 
+	{
+		archivoConjunto.read(reinterpret_cast<char*>(&lecturaCampo), sizeof(InformacionCampo));
+		listaCampos.push_back(lecturaCampo);
+	}
+
+	//posionarse al final del archivo para escritura
+	archivoConjunto.seekp(0, ios::end);
+
+	for (int i = 0; i < cantidadAgregar; i++)
+	{
+		cout << "Registro " << (i + 1) << ":\n";
+		for (int j = 0; j < listaCampos.size(); j++)
+		{
+			switch (listaCampos[j].tipo)
+			{
+			case TipoCampo::t_Entero:
+				cout << "Ingrese " << listaCampos[j].nombreCampo << ": ";
+				RegistroEntero re;
+				cin >> re.valor;
+				archivoConjunto.write(reinterpret_cast<const char*>(&re), sizeof(RegistroEntero));
+				break;
+			case TipoCampo::t_Decimal:
+				cout << "Ingrese " << listaCampos[j].nombreCampo << ": ";
+				RegistroDecimal rd;
+				cin >> rd.valor;
+				archivoConjunto.write(reinterpret_cast<const char*>(&rd), sizeof(RegistroDecimal));
+				break;
+			case TipoCampo::t_Cadena:
+				cout << "Ingrese " << listaCampos[j].nombreCampo << ": ";
+				RegistroCadena rc;
+				cin >> rc.valor;
+				archivoConjunto.write(reinterpret_cast<const char*>(&rc), sizeof(RegistroCadena));
+				break;
+			case TipoCampo::t_Caracter:
+				cout << "Ingrese " << listaCampos[j].nombreCampo << ": ";
+				RegistroCaracter rch;
+				cin >> rch.valor;
+				archivoConjunto.write(reinterpret_cast<const char*>(&rch), sizeof(RegistroCaracter));
+				break;
+			case TipoCampo::t_Logico:
+				cout << "Ingrese " << listaCampos[j].nombreCampo << ": ";
+				RegistroLogico rl;
+				int valorLogico;
+				cin >> valorLogico;
+
+				valorLogico == 1 ? rl.valor = true : rl.valor = false;
+
+				archivoConjunto.write(reinterpret_cast<const char*>(&rl), sizeof(RegistroLogico));
+				break;
+			}
+
+
+		}
+
+	}
+
+	//posicionar al inicio del archivo para escritura
+	archivoConjunto.seekp(0, ios::beg);
+	it.cantidadRegistros += cantidadAgregar;
+	archivoConjunto.write(reinterpret_cast<const char*>(&it), sizeof(InformacionTabla));
+
+	archivoConjunto.close();
+
+}

@@ -52,5 +52,6 @@ struct RegistroLogico
 
 void crearConjunto();
 void leerConjunto();
+void agregarRegistro();
 
 #endif // !ESTRUCTURAS_H

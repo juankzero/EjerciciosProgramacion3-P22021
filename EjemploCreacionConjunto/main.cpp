@@ -8,6 +8,8 @@ int main()
 
 	//crearConjunto();
 
+	agregarRegistro();
+
 	leerConjunto();
 
 	_getch();
