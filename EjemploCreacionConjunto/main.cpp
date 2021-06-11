@@ -4,11 +4,11 @@
 
 int main() 
 {
-	//crearConjunto();
+	crearConjunto();
 
 	//crearConjunto();
 
-	//agregarRegistro();
+	agregarRegistro();
 
 	leerConjunto();
 

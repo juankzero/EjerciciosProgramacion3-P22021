@@ -340,7 +340,7 @@ void editarRegistro()
 	int idRegistro = 0;
 	cin >> idRegistro;
 
-	cout << "Indique el campo a editar del registro " << idRegistro << ": ";
+	cout << "Indique el campo a editar del registro " << idRegistro << ": \n";
 	for (int i = 1; i < listaCampos.size(); i++)
 		cout << i << ". " << listaCampos[i].nombreCampo << "\n";
 	cout << "Seleccione opcion: ";
@@ -351,6 +351,7 @@ void editarRegistro()
 	RegistroEntero re;
 	while (!archivoConjunto.eof())
 	{
+		//se lee el campoID
 		archivoConjunto.read(reinterpret_cast<char*>(&re), sizeof(RegistroEntero));
 
 		int posicion = 0;
