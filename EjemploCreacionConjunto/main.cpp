@@ -8,7 +8,11 @@ int main()
 
 	//crearConjunto();
 
-	agregarRegistro();
+	//agregarRegistro();
+
+	leerConjunto();
+
+	editarRegistro();
 
 	leerConjunto();
 

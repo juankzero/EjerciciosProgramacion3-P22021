@@ -301,3 +301,145 @@ void agregarRegistro()
 	archivoConjunto.close();
 
 }
+
+void editarRegistro()
+{
+
+	cout << "*** E D I T A R  R E G I S T R O ***\n\n";
+
+	cout << "Indique nombre de Conjunto/Tabla a editar registro: ";
+	char nombreConjunto[20];
+	cin >> nombreConjunto;
+
+	fstream archivoConjunto(nombreConjunto, ios::in | ios::out | ios::binary );
+
+	if (!archivoConjunto) 
+	{
+		cout << "Error: Imposible abrir/leer archivo " << nombreConjunto << "\n";
+		return;
+	}
+
+	archivoConjunto.seekg(0, ios::beg);
+	InformacionTabla infoTabla;
+	archivoConjunto.read(reinterpret_cast<char*>(&infoTabla), sizeof(InformacionTabla));
+
+	InformacionCampo infoCampo;
+	InformacionCampo campoID;
+	vector<InformacionCampo> listaCampos;
+	
+	for (int i = 0; i < infoTabla.cantidadCampos; i++) 
+	{
+		archivoConjunto.read(reinterpret_cast<char*>(&infoCampo), sizeof(InformacionCampo));
+		if (i == 0)
+			campoID = infoCampo;
+		listaCampos.push_back(infoCampo);
+	}
+
+
+	cout << "Indique " << campoID.nombreCampo << " a editar: ";
+	int idRegistro = 0;
+	cin >> idRegistro;
+
+	cout << "Indique el campo a editar del registro " << idRegistro << ": ";
+	for (int i = 1; i < listaCampos.size(); i++)
+		cout << i << ". " << listaCampos[i].nombreCampo << "\n";
+	cout << "Seleccione opcion: ";
+	int opcion = 0;
+	cin >> opcion;
+
+
+	RegistroEntero re;
+	while (!archivoConjunto.eof())
+	{
+		archivoConjunto.read(reinterpret_cast<char*>(&re), sizeof(RegistroEntero));
+
+		int posicion = 0;
+		if (re.valor == idRegistro)
+		{
+			posicion = obtenerSaltos(listaCampos, opcion);
+			archivoConjunto.seekp(posicion + archivoConjunto.tellg(), ios::beg);
+			
+			cout << "Ingrese dato a actualizar para " << listaCampos[opcion].nombreCampo << ": ";
+			switch (listaCampos[opcion].tipo) 
+			{
+				case TipoCampo::t_Entero:
+					RegistroEntero ret;
+					cin >> ret.valor;
+					archivoConjunto.write(reinterpret_cast<const char*>(&ret), sizeof(RegistroEntero));
+					archivoConjunto.close();
+					break;
+				case TipoCampo::t_Decimal:
+					RegistroDecimal rdc;
+					cin >> rdc.valor;
+					archivoConjunto.write(reinterpret_cast<const char*>(&rdc), sizeof(RegistroDecimal));
+					archivoConjunto.close();
+					break;
+				case TipoCampo::t_Cadena:
+					RegistroCadena rca;
+					cin >> rca.valor;
+					archivoConjunto.write(reinterpret_cast<const char*>(&rca), sizeof(RegistroCadena));
+					archivoConjunto.close();
+					break;
+				case TipoCampo::t_Caracter:
+					RegistroCaracter rcha;
+					cin >> rcha.valor;
+					archivoConjunto.write(reinterpret_cast<const char*>(&rcha), sizeof(RegistroCaracter));
+					archivoConjunto.close();
+					break;
+				case TipoCampo::t_Logico:
+					RegistroLogico rlg;
+					cin >> rlg.valor;
+					archivoConjunto.write(reinterpret_cast<const char*>(&rlg), sizeof(RegistroLogico));
+					archivoConjunto.close();
+					break;
+			}
+
+			cout << "Registro Modificado!\n";
+			return;
+		}
+		
+		posicion = obtenerSaltos(listaCampos, -1);
+		archivoConjunto.seekg((int)archivoConjunto.tellg() + posicion, ios::beg);
+	}
+
+
+}
+
+
+int obtenerSaltos(vector<InformacionCampo> lista, int opcion) 
+{
+	int posicion = 0;;
+	for (int i = 1; i < lista.size(); i++)
+	{
+		if (opcion != i)
+			posicion += obtenerSizeof(lista[i].tipo);
+		else
+			return posicion;
+	}
+
+	return posicion;
+}
+
+int obtenerSizeof(TipoCampo tc) 
+{
+	switch (tc) 
+	{
+		case TipoCampo::t_Entero:
+			return sizeof(RegistroEntero);
+			break;
+		case TipoCampo::t_Decimal:
+			return sizeof(RegistroDecimal);
+			break;
+		case TipoCampo::t_Cadena:
+			return sizeof(RegistroCadena);
+			break;
+		case TipoCampo::t_Caracter:
+			return sizeof(RegistroCaracter);
+			break;
+		case TipoCampo::t_Logico:
+			return sizeof(RegistroLogico);
+			break;
+	}
+
+	return 0;
+}

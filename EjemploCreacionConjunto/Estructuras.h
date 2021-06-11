@@ -3,6 +3,10 @@
 #ifndef ESTRUCTURAS_H
 #define ESTRUCTURAS_H
 
+#include <vector>
+
+using std::vector;
+
 struct InformacionTabla 
 {
 	int cantidadCampos;
@@ -53,5 +57,9 @@ struct RegistroLogico
 void crearConjunto();
 void leerConjunto();
 void agregarRegistro();
+void editarRegistro();
+
+int obtenerSaltos(vector<InformacionCampo>, int);
+int obtenerSizeof(TipoCampo);
 
 #endif // !ESTRUCTURAS_H
